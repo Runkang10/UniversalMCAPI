@@ -5,4 +5,4 @@ api-version: '1.21'
 load: STARTUP
 authors: [ Runkang10 ]
 description: Minecraft API used in my plugins.
-website: https://runkang10.sysapp.org/project/UniversalAPI
+website: https://github.com/Runkang10/UniversalMCAPI/
