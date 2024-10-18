@@ -1,38 +1,41 @@
 package org.sysapp.runkang10.universalMCAPI
 
-import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.plugin.java.JavaPlugin
-import org.sysapp.runkang10.universalMCAPI.Paper.PaperPluginLoader
+import org.sysapp.runkang10.universalMCAPI.paper.plugin.PaperPluginLoader
+import org.sysapp.runkang10.universalMCAPI.paper.console.SendMessage
 
 class UniversalMCAPI : JavaPlugin() {
-    private var instance: UniversalMCAPI = TODO()
-    private var pluginInfo: PaperPluginLoader
+    private lateinit var instance: UniversalMCAPI
+    private lateinit var serverLogger: SendMessage
+    private lateinit var pluginInfo: PaperPluginLoader
 
     override fun onEnable() {
         super.onEnable()
         instance = this
-        pluginInfo = PaperPluginLoader(this)
-        // Plugin startup logic
-        this.server.consoleSender.sendMessage(
-            Component.text(
-                "Successfully enabled " + pluginInfo.getName() + "!"
-            )
-                .color(NamedTextColor.GREEN)
+        serverLogger = SendMessage(this)
+        pluginInfo = PaperPluginLoader(this, serverLogger)
+        //
+        serverLogger.info(
+            "Successfully enabled " + pluginInfo.getName() + "!"
         )
-    }
-
-    fun getInstance(): UniversalMCAPI {
-        return instance;
     }
 
     override fun onDisable() {
         // Plugin shutdown logic
-        this.server.consoleSender.sendMessage(
-            Component.text(
-                "Successfully disabled " + pluginInfo.getName() + "!"
-            )
-                .color(NamedTextColor.RED)
+        serverLogger.info(
+            "Successfully disabled " + pluginInfo.getName() + "!"
         )
+    }
+
+    fun getInstance(): UniversalMCAPI {
+        return instance
+    }
+
+    fun getPluginInfo(): PaperPluginLoader {
+        return pluginInfo
+    }
+
+    fun getServerLogger(): SendMessage {
+        return serverLogger
     }
 }
