@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "2.1.0-Beta2"
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.modrinth.minotaur") version "2.+"
 }
 
 group = "org.sysapp.runkang10.universalMCAPI"
