@@ -1,13 +1,10 @@
 package org.sysapp.runkang10.universalMCAPI.folia
 
 import io.papermc.paper.threadedregions.scheduler.GlobalRegionScheduler
-import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import org.sysapp.runkang10.universalMCAPI.UniversalMCAPI
 import org.sysapp.runkang10.universalMCAPI.paper.console.SendMessage
-import kotlin.math.log
 
 class FoliaAPI(private var plugin: JavaPlugin) {
     private var isfolia: Boolean = this.isFolia()
