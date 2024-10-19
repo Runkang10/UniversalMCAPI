@@ -1,11 +1,7 @@
 package org.sysapp.runkang10.universalMCAPI.paper.plugin
 
-import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.format.NamedTextColor
-import net.kyori.adventure.text.format.TextDecoration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
-import org.sysapp.runkang10.universalMCAPI.UniversalMCAPI
 import org.sysapp.runkang10.universalMCAPI.paper.console.SendMessage
 import java.io.InputStream
 import java.io.InputStreamReader
