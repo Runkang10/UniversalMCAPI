@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "org.sysapp.runkang10.universalMCAPI"
-version = "1.2.2"
+version = "1.3.0"
 
 repositories {
     mavenCentral()
@@ -14,6 +14,16 @@ repositories {
     maven("https://oss.sonatype.org/content/groups/public/") {
         name = "sonatype"
     }
+}
+
+modrinth {
+    token = "mrp_JADW7lR2mJOEYslbfMq59zj8VJKZYyGekgiDSRM9rvfZjjdSaD9a5sZaqX4p"
+    projectId = "universalmcapi"
+    versionType = "release"
+    uploadFile = jar
+    gameVersions = ["1.21", "1.21.1"]
+    loaders = ["paper"]
+    syncBodyFrom = rootProject.file("README.md").text
 }
 
 dependencies {
