@@ -37,6 +37,10 @@ kotlin {
     jvmToolchain(targetJavaVersion)
 }
 
+tasks.modrinth {
+    dependsOn(tasks.build)
+}
+
 tasks.build {
     dependsOn("shadowJar")
 }
