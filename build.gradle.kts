@@ -17,7 +17,7 @@ repositories {
 }
 
 modrinth {
-    token = "mrp_JADW7lR2mJOEYslbfMq59zj8VJKZYyGekgiDSRM9rvfZjjdSaD9a5sZaqX4p"
+    token = System.getenv("MODRINTH_SECRET")
     projectId = "universalmcapi"
     versionType = "release"
     uploadFile = jar
