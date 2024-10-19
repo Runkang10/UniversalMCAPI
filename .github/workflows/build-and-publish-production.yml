@@ -19,6 +19,8 @@ jobs:
           distribution: temurin
           java-version: 21
 
+      - run: chmod +x ./gradlew
+
       - name: Test
         run: ./gradlew test
 
