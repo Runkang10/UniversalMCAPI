@@ -18,13 +18,13 @@ repositories {
 }
 
 modrinth {
-    token = System.getenv("MODRINTH_SECRET")
-    projectId = "universalmcapi"
-    versionType = "release"
-    uploadFile = jar
-    gameVersions = ["1.21", "1.21.1"]
-    loaders = ["paper"]
-    syncBodyFrom = rootProject.file("README.md").text
+    token.set(System.getenv("MODRINTH_SECRET"))
+    projectId.set("universalmcapi")
+    versionType.set("release")
+    uploadFile.set(tasks.shadowJar.get().archiveFile)
+    gameVersions.addAll(listOf("1.21", "1.21.1"))
+    loaders.add("paper")
+    syncBodyFrom.set(rootProject.file("README.md").readText())
 }
 
 dependencies {
