@@ -23,7 +23,7 @@ modrinth {
     versionType.set("release")
     uploadFile.set(tasks.shadowJar.get().archiveFile)
     gameVersions.addAll(listOf("1.21", "1.21.1"))
-    loaders.add("paper")
+    loaders.addAll(listOf("paper", "folia"))
     syncBodyFrom.set(rootProject.file("README.md").readText())
 }
 
