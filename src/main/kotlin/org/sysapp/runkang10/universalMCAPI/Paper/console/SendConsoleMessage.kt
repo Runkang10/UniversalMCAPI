@@ -4,33 +4,33 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.plugin.java.JavaPlugin
 
-enum class SendMessageTypes {
+enum class SendConsoleMessageTypes {
     LOG,
     INFO,
     WARNING,
     ERROR
 }
 
-class SendMessage(plugin: JavaPlugin) {
+class SendConsoleMessage(plugin: JavaPlugin) {
     private var sendMessage = plugin.server.consoleSender
     private var alternativeSendMessage = plugin.logger
 
     fun info(msg: String) {
-        return this.send(msg, SendMessageTypes.INFO)
+        return this.send(msg, SendConsoleMessageTypes.INFO)
     }
 
     fun warning(msg: String) {
-        return this.send(msg, SendMessageTypes.WARNING)
+        return this.send(msg, SendConsoleMessageTypes.WARNING)
     }
 
     fun error(msg: String) {
-        return this.send(msg, SendMessageTypes.ERROR)
+        return this.send(msg, SendConsoleMessageTypes.ERROR)
     }
 
-    private fun send(msg: String, type: SendMessageTypes) {
+    private fun send(msg: String, type: SendConsoleMessageTypes) {
         try {
             when (type) {
-                SendMessageTypes.LOG -> {
+                SendConsoleMessageTypes.LOG -> {
                     sendMessage.sendMessage(
                         Component.text(
                             msg
@@ -38,7 +38,7 @@ class SendMessage(plugin: JavaPlugin) {
                     )
                 }
 
-                SendMessageTypes.INFO -> {
+                SendConsoleMessageTypes.INFO -> {
                     sendMessage.sendMessage(
                         Component.text(
                             msg
@@ -49,7 +49,7 @@ class SendMessage(plugin: JavaPlugin) {
                     )
                 }
 
-                SendMessageTypes.WARNING -> {
+                SendConsoleMessageTypes.WARNING -> {
                     sendMessage.sendMessage(
                         Component.text(
                             msg
@@ -60,7 +60,7 @@ class SendMessage(plugin: JavaPlugin) {
                     )
                 }
 
-                SendMessageTypes.ERROR -> {
+                SendConsoleMessageTypes.ERROR -> {
                     sendMessage.sendMessage(
                         Component.text(
                             msg

@@ -4,11 +4,11 @@ import io.papermc.paper.threadedregions.scheduler.GlobalRegionScheduler
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import org.sysapp.runkang10.universalMCAPI.UniversalMCAPI
-import org.sysapp.runkang10.universalMCAPI.paper.console.SendMessage
+import org.sysapp.runkang10.universalMCAPI.paper.console.SendConsoleMessage
 
 class FoliaAPI(private var plugin: JavaPlugin) {
     private var isfolia: Boolean = this.isFolia()
-    private var logger: SendMessage = UniversalMCAPI().getServerLogger()
+    private var logger: SendConsoleMessage = UniversalMCAPI().getServerLogger()
     private lateinit var globalRegionScheduler: GlobalRegionScheduler
 
     fun init() {

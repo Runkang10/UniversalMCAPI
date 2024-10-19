@@ -2,17 +2,17 @@ package org.sysapp.runkang10.universalMCAPI
 
 import org.bukkit.plugin.java.JavaPlugin
 import org.sysapp.runkang10.universalMCAPI.paper.plugin.PaperPluginLoader
-import org.sysapp.runkang10.universalMCAPI.paper.console.SendMessage
+import org.sysapp.runkang10.universalMCAPI.paper.console.SendConsoleMessage
 
 class UniversalMCAPI : JavaPlugin() {
     private lateinit var instance: UniversalMCAPI
-    private lateinit var serverLogger: SendMessage
+    private lateinit var serverLogger: SendConsoleMessage
     private lateinit var pluginInfo: PaperPluginLoader
 
     override fun onEnable() {
         super.onEnable()
         instance = this
-        serverLogger = SendMessage(this)
+        serverLogger = SendConsoleMessage(this)
         pluginInfo = PaperPluginLoader(this, serverLogger)
         //
         serverLogger.info(
@@ -35,7 +35,7 @@ class UniversalMCAPI : JavaPlugin() {
         return pluginInfo
     }
 
-    fun getServerLogger(): SendMessage {
+    fun getServerLogger(): SendConsoleMessage {
         return serverLogger
     }
 }

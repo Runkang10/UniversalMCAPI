@@ -2,7 +2,7 @@ package org.sysapp.runkang10.universalMCAPI.paper.plugin
 
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
-import org.sysapp.runkang10.universalMCAPI.paper.console.SendMessage
+import org.sysapp.runkang10.universalMCAPI.paper.console.SendConsoleMessage
 import java.io.InputStream
 import java.io.InputStreamReader
 
@@ -12,7 +12,7 @@ import java.io.InputStreamReader
  */
 class PaperPluginLoader(
     private var plugin: JavaPlugin,
-    private var logger: SendMessage
+    private var logger: SendConsoleMessage
 ) {
     // Variable to hold the loaded configuration from the YML file
     private var configuration: YamlConfiguration? = null
