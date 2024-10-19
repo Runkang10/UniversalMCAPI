@@ -61,3 +61,5 @@ jobs:
 
       - name: Publish on Modrinth
         run: ./gradlew modrinth
+        env:
+          MODRINTH_SECRET: ${{ secrets.MODRINTH_SECRET }}
