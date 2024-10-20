@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "2.1.0-Beta2"
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("org.jetbrains.dokka") version "1.9.+"
     id("com.modrinth.minotaur") version "2.+"
 }
 
@@ -37,11 +38,27 @@ kotlin {
     jvmToolchain(targetJavaVersion)
 }
 
+tasks.dokkaHtml {
+    outputDirectory.set(layout.buildDirectory.dir("dokka"))
+    dokkaSourceSets {
+        configureEach {
+            val baseUrl = "https://runkang10.github.io/universalmcapi/"
+            externalDocumentationLink("https://kotlinlang.org/api/latest/jvm/stdlib/")
+            moduleName.set("UniversalMCAPI")
+            perPackageOption {
+                matchingRegex.set(".*")
+                externalDocumentationLink(baseUrl)
+            }
+        }
+    }
+}
+
 tasks.modrinth {
     dependsOn(tasks.build)
 }
 
 tasks.build {
+    dependsOn(tasks.dokkaHtml)
     dependsOn("shadowJar")
 }
 

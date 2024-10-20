@@ -4,10 +4,10 @@
 
 
 ## Key Features
-- ⚡**Latest Version Compatibility**: Works with Paper and Folia latest version.
-- 🧰**Modular Design**: Easy-to-use API structure for rapid development and extension.
-- 🔷**Reusable Classes**: Provides reusable classes and methods to handle common plugin functionalities.
-- 🟩**Integrated dependencies**: External dependencies are built into the plugin to not let server administrators worry about installing dependencies on the server.
+- ⚡ **Latest Version Compatibility**: Works with Paper and Folia latest version.
+- 🧰 **Modular Design**: Easy-to-use API structure for rapid development and extension.
+- 🔷 **Reusable Classes**: Provides reusable classes and methods to handle common plugin functionalities.
+- 🟩 **Integrated dependencies**: External dependencies are built into the plugin to not let server administrators worry about installing dependencies on the server.
 
 
 ## Requirements
@@ -16,9 +16,8 @@
 - **Minecraft 1.21** and above
 
 
-Currently this plugin is still on working in progress.
-But with the first version you should be able to access `PaperPluginLoader`
-class to load your `paper-plugin.yml` configuration like _name_, _version_ and _ect_.
+### Links
+- [Wiki](https://runkang10.github.io/universalmcapi/)
 
 
 > I'm still learning Java and Kotlin and Minecraft development but this API plugin will be my first plugin available on Modrinth and Hangar. 👍
