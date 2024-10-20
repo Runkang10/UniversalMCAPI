@@ -9,11 +9,15 @@ on:
     branches:
       - dev
       - main
+  workflow_run:
+    types:
+      - completed
+    workflows:
+      - Test
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    needs: test
 
     steps:
       - name: Checkout
