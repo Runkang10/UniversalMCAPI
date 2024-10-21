@@ -7,17 +7,20 @@ import java.io.InputStream
 import java.io.InputStreamReader
 
 /**
- * Class responsible for loading and managing the Paper plugin configuration
- * using the `paper-plugin.yml` file.
+ * Class responsible to get Paper plugin information
+ * stored in the `paper-plugin.yml` file.
+ *
+ * @property plugin Minecraft plugin instance.
+ * @property logger UniversalMCAPI Logger
  */
 class PaperPluginLoader(
+    /**
+     *
+     */
     private var plugin: JavaPlugin,
     private var logger: SendConsoleMessage
 ) {
-    // Variable to hold the loaded configuration from the YML file
     private var configuration: YamlConfiguration? = null
-
-    // Fallback value in case data is not found in the configuration file
     private var unknown: String = "unknown"
 
     init {
