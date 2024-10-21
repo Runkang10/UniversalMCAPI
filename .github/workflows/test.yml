@@ -38,11 +38,10 @@ jobs:
       - name: Build Documentation
         run: ./gradlew dokkaGfm --no-daemon
 
-      - name: Install GitHub CLI
-        run: sudo apt-get install gh
-
-      - name: Authenticate GitHub CLI
-        run: gh auth login --with-token
+      - name: Configure Git User
+        run: |
+          git config --global user.email "chen.runkang10@gmail.com"
+          git config --global user.name "Runkang10"
 
       - name: Upload Documentation to Wiki
         run: |
@@ -52,6 +51,8 @@ jobs:
           git add .
           git commit -m "Update documentation" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
     runs-on: ubuntu-latest
