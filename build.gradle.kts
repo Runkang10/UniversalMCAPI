@@ -1,3 +1,6 @@
+import org.apache.commons.io.output.ByteArrayOutputStream
+import java.nio.charset.StandardCharsets
+
 plugins {
     kotlin("jvm") version "2.1.0-Beta2"
     id("com.github.johnrengelman.shadow") version "8.1.1"
@@ -5,8 +8,35 @@ plugins {
     id("com.modrinth.minotaur") version "2.+"
 }
 
+val gitVersion: groovy.lang.Closure<String> by extra
+
 group = "org.sysapp.runkang10.universalMCAPI"
-version = "1.3.0"
+version = "2.0.0"
+
+fun getCurrentGitBranch(): String {
+    val output = ByteArrayOutputStream()
+    exec {
+        commandLine("git", "rev-parse", "--abbrev-ref", "HEAD")
+        standardOutput = output
+    }
+
+    return String(
+        output.toByteArray(),
+        StandardCharsets.UTF_8
+    )
+        .trim()
+        .takeIf {
+            it.isNotEmpty()
+        } ?: "unknown"
+}
+
+val currentBranch = getCurrentGitBranch()
+
+val versionType = when (currentBranch) {
+    "main" -> "release"
+    "dev" -> "dev"
+    else -> null
+}
 
 repositories {
     mavenCentral()
@@ -21,10 +51,12 @@ repositories {
 modrinth {
     token.set(System.getenv("MODRINTH_SECRET"))
     projectId.set("universalmcapi")
-    versionType.set("release")
+    versionType.set(versionType)
     uploadFile.set(tasks.shadowJar.get().archiveFile)
     gameVersions.addAll(listOf("1.21", "1.21.1"))
-    loaders.addAll(listOf("paper", "folia"))
+    loaders.addAll(listOf("paper", "folia", "purpur"))
+    changelog.set("**Full changelog**: https:/github.com/Runkang10/UniversalMCAPI/releases/tag/v${version}")
+
     syncBodyFrom.set(rootProject.file("README.md").readText())
 }
 
@@ -38,17 +70,12 @@ kotlin {
     jvmToolchain(targetJavaVersion)
 }
 
-tasks.dokkaHtml {
+tasks.dokkaGfm {
+    println(getCurrentGitBranch())
     outputDirectory.set(layout.buildDirectory.dir("dokka"))
     dokkaSourceSets {
         configureEach {
-            val baseUrl = "https://runkang10.github.io/universalmcapi/"
-            externalDocumentationLink("https://kotlinlang.org/api/latest/jvm/stdlib/")
-            moduleName.set("UniversalMCAPI")
-            perPackageOption {
-                matchingRegex.set(".*")
-                externalDocumentationLink(baseUrl)
-            }
+            jdkVersion.set(targetJavaVersion)
         }
     }
 }
@@ -58,7 +85,6 @@ tasks.modrinth {
 }
 
 tasks.build {
-    dependsOn(tasks.dokkaHtml)
     dependsOn("shadowJar")
 }
 
