@@ -38,19 +38,19 @@ jobs:
       - name: Build Documentation
         run: ./gradlew dokkaGfm --no-daemon
 
-      - name: Upload Documentation
-        uses: actions/upload-artifact@v4
-        with:
-          name: dokka-docs
-          path: build/dokka
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh
 
-      - name: Clone Wiki Repository
+      - name: Authenticate GitHub CLI
+        run: gh auth login --with-token
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Documentation to Wiki
         run: |
-          git clone https://github.com/${{ github.repository }}.wiki.git wiki
+          gh repo clone Runkang10/UniversalMCAPI.wiki wiki
           cp -r build/dokka/* wiki/  # Copy the generated documentation to the wiki folder
           cd wiki
-          git config user.name "${{ secrets.GITHUB_ACTOR }}"
-          git config user.email "${{ secrets.GITHUB_ACTOR }}@users.noreply.github.com"
           git add .
           git commit -m "Update documentation" || echo "No changes to commit"
           git push
