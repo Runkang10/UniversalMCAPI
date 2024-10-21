@@ -45,7 +45,7 @@ jobs:
 
       - name: Upload Documentation to Wiki
         run: |
-          gh repo clone Runkang10/UniversalMCAPI.wiki wiki
+          git clone https://github.com/Runkang10/UniversalMCAPI.wiki.git wiki
           cp -r build/dokka/* wiki/  # Copy the generated documentation to the wiki folder
           cd wiki
           git add .
