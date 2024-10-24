@@ -1,4 +1,4 @@
-package io.github.runkang10.UniversalMCAPI
+package io.github.runkang10.UniversalMCAPI.common
 
 import org.bukkit.plugin.java.JavaPlugin
 import io.github.runkang10.UniversalMCAPI.paper.console.SendConsoleMessage

@@ -1,6 +1,6 @@
 name: UniversalMCAPI
 version: ${version}
-main: org.sysapp.runkang10.universalMCAPI.UniversalMCAPI
+main: ${group}
 api-version: '1.21'
 load: STARTUP
 authors: [ Runkang10 ]

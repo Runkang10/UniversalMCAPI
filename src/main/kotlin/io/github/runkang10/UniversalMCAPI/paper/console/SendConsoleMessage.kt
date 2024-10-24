@@ -1,9 +1,9 @@
-package org.sysapp.runkang10.universalMCAPI.paper.console
+package io.github.runkang10.UniversalMCAPI.paper.console
 
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.plugin.java.JavaPlugin
-import org.sysapp.runkang10.universalMCAPI.paper.TryCatchRunner
+import io.github.runkang10.UniversalMCAPI.common.TryCatchRunner
 
 enum class SendConsoleMessageTypes {
     INFO,

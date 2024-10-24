@@ -1,4 +1,4 @@
-package io.github.runkang10.UniversalMCAPI.paper.plugin
+package io.github.runkang10.UniversalMCAPI.paper
 
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
