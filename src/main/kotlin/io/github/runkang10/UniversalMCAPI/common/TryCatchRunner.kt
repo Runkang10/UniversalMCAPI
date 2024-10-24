@@ -1,7 +1,7 @@
-package org.sysapp.runkang10.universalMCAPI.paper
+package io.github.runkang10.UniversalMCAPI
 
 import org.bukkit.plugin.java.JavaPlugin
-import org.sysapp.runkang10.universalMCAPI.paper.console.SendConsoleMessage
+import io.github.runkang10.UniversalMCAPI.paper.console.SendConsoleMessage
 
 /**
  * A utility class to safely execute actions while handling exceptions.
@@ -23,11 +23,11 @@ class TryCatchRunner(
      * @param exceptionAction The action to perform in case of an exception.
      *                        Defaults to logging the error details.
      */
-    fun execute(
-        action: () -> Unit,
+    fun <T> execute(
+        action: () -> T,
         silent: Boolean = false,
         log: Boolean = false,
-        exceptionAction: (e: Exception) -> Unit = { e ->
+        exceptionAction: (e: Exception) -> T? = { e ->
             if (!silent) {
                 logger.error("===================================================================")
                 logger.defaultError("  Unknown error while trying to log output: ${e.message}")
@@ -36,6 +36,7 @@ class TryCatchRunner(
                 logger.defaultError("  Localized message: ${e.localizedMessage}")
                 logger.error("===================================================================")
             }
+            null
         }
     ) {
         try {

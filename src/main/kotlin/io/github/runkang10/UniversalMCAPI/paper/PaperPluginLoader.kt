@@ -1,8 +1,8 @@
-package org.sysapp.runkang10.universalMCAPI.paper.plugin
+package io.github.runkang10.UniversalMCAPI.paper.plugin
 
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
-import org.sysapp.runkang10.universalMCAPI.paper.console.SendConsoleMessage
+import io.github.runkang10.UniversalMCAPI.paper.console.SendConsoleMessage
 import java.io.InputStream
 import java.io.InputStreamReader
 

@@ -1,14 +1,7 @@
 name: Build
 
 on:
-  workflow_run:
-    types:
-      - completed
-    workflows:
-      - Test
-    branches:
-      - main
-      - dev
+  workflow_dispatch:
 
 jobs:
   build:
@@ -66,7 +59,8 @@ jobs:
 
       - run: chmod +x ./gradlew
 
-      - name: Publish on Modrinth
-        run: ./gradlew modrinth --no-daemon
+      - name: Publish on Modrinth and Hangar
+        run: ./gradlew modrinth publishAllPublicationsToHangar --no-daemon
         env:
           MODRINTH_SECRET: ${{ secrets.MODRINTH_SECRET }}
+          HANGAR_API_TOKEN: ${{ secrets.HANGAR_API_TOKEN }}
