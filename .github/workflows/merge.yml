@@ -1,0 +1,39 @@
+name: Merge branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      host_branch:
+        description: Host branch with you changes to merge on `target_branch`.
+        required: true
+      target_branch:
+        description: Target branch to merge/copy from `host_branch`.
+        required: true
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "Github Actions"
+          git config --global user.name "github-actions@github.com"
+
+      - name: Validate
+        run: |
+          if [[ "${{ github.event.inputs.target_branch }}" != "alpha" && "${{ github.event.inputs.target_branch }}" != "dev" && "${{ github.event.inputs.target_branch }}" != "main" ]]; then
+            echo "Error: Target branch must be 'alpha' or 'dev' or 'main'."
+            exit 1
+          fi
+
+      - name: Merge
+        run: |
+          git checkout ${{ github.event.inputs.target_branch }}
+          git merge ${{ github.event.inputs.host_branch }} --no-edit
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Runkang10/UniversalMCAPI.git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
