@@ -17,7 +17,7 @@
 
 
 ### Links
-- [Wiki](https://runkang10.github.io/universalmcapi/)
+- [Wiki](#) (Not available yet)
 
 
 > I'm still learning Java and Kotlin and Minecraft development but this API plugin will be my first plugin available on Modrinth and Hangar. 👍
