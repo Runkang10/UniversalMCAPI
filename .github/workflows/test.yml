@@ -9,51 +9,6 @@ on:
       - "**"
 
 jobs:
-  doc:
-    runs-on: ubuntu-latest
-    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Cache Gradle
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            gradle-${{ runner.os }}
-
-      - name: Set up SDK 21
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-
-      - run: chmod +x ./gradlew
-
-      - name: Build Documentation
-        run: ./gradlew dokkaGfm --no-daemon
-
-      - name: Configure Git User
-        run: |
-          git config --global user.email "chen.runkang10@gmail.com"
-          git config --global user.name "Runkang10"
-
-      - name: Upload Documentation to Wiki
-        run: |
-          git clone https://github.com/Runkang10/UniversalMCAPI.wiki.git wiki
-          cp -r build/dokka/* wiki/  # Copy the generated documentation to the wiki folder
-          cd wiki
-          git add .
-          git commit -m "Update documentation" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Runkang10/UniversalMCAPI.wiki.git
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   test:
     runs-on: ubuntu-latest
 
